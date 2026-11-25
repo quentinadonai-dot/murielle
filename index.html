@@ -42,13 +42,6 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4rem);margin-
 .phrase{font-size:clamp(1rem,2.4vw,1.35rem);color:#e7dfd3;font-weight:300;line-height:1.65}
 .cake{font-size:clamp(4rem,13vw,8rem);margin:2rem 0;filter:drop-shadow(0 0 30px rgba(232,197,109,.45));animation:float 4s ease-in-out infinite}
 .cake span{display:inline-block;animation:flicker 1.6s infinite}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:3.2rem}
-.card{position:relative;overflow:hidden;aspect-ratio:3/4;background:#171719;border:1px solid rgba(232,197,109,.22);cursor:pointer}
-.card img{width:100%;height:100%;object-fit:cover;filter:grayscale(45%) contrast(1.08);transition:.65s cubic-bezier(.2,.7,.2,1)}
-.card:hover img{transform:scale(1.08);filter:none}
-.card:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(0,0,0,.72));opacity:.85}
-.card figcaption{position:absolute;bottom:1rem;left:1rem;right:1rem;z-index:2;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#eee;opacity:0;transform:translateY(12px);transition:.45s}
-.card:hover figcaption{opacity:1;transform:none}
 .wish{position:fixed;inset:0;z-index:98;display:grid;place-items:center;background:rgba(8,8,10,.92);opacity:0;visibility:hidden;transition:.6s}
 .wish.show{opacity:1;visibility:visible}
 .wish-box{max-width:540px;padding:3rem 2rem;text-align:center;border:1px solid rgba(232,197,109,.35);background:rgba(12,12,14,.94);box-shadow:0 0 80px rgba(232,197,109,.18)}
@@ -59,7 +52,6 @@ footer{padding:3.5rem 1rem;text-align:center;color:#8d8478;font-size:.75rem;lett
 @keyframes shine{0%,100%{text-shadow:0 0 12px rgba(232,197,109,.25)}50%{text-shadow:0 0 38px rgba(232,197,109,.8)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes flicker{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.94)}}
-@media(max-width:760px){.gallery{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -114,22 +106,6 @@ footer{padding:3.5rem 1rem;text-align:center;color:#8d8478;font-size:.75rem;lett
     <p class="lead">Murielle, que cette année t’apporte des défilés mémorables, des projets à la hauteur de ton talent, des succès à ta mesure et une joie qui ne s’éteint jamais.</p>
     <div class="cake">🎂<span>✨</span></div>
     <button class="btn" id="wishBtn">Faire un vœu</button>
-  </div>
-</section>
-
-<section class="section" id="galerie">
-  <div class="reveal">
-    <h2>La galerie de Murielle</h2>
-    <div class="rule"></div>
-    <p class="lead">Quelques instants précieux, à garder comme des souvenirs de lumière.</p>
-    <div class="gallery">
-      <figure class="card"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=900&q=80" alt="Portrait élégant"><figcaption>Moment 01</figcaption></figure>
-      <figure class="card"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" alt="Style et élégance"><figcaption>Moment 02</figcaption></figure>
-      <figure class="card"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Portrait lumineux"><figcaption>Moment 03</figcaption></figure>
-      <figure class="card"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80" alt="Sourire"><figcaption>Moment 04</figcaption></figure>
-      <figure class="card"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80" alt="Élégance"><figcaption>Moment 05</figcaption></figure>
-      <figure class="card"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=900&q=80" alt="Souvenir"><figcaption>Moment 06</figcaption></figure>
-    </div>
   </div>
 </section>
 
@@ -188,8 +164,6 @@ const lineObserver=new IntersectionObserver(es=>es.forEach((e,i)=>{
  if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*220);lineObserver.unobserve(e.target)}
 }),{threshold:.25});
 document.querySelectorAll('.line').forEach(el=>lineObserver.observe(el));
-
-document.querySelectorAll('.card').forEach(c=>c.addEventListener('mouseenter',()=>{const r=c.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,26)}));
 </script>
 </body>
 </html>
